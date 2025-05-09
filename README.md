@@ -1,57 +1,49 @@
-📚 Management Perpustakaan
+# 📚 Management Perpustakaan
+
 Sistem Manajemen Perpustakaan berbasis Laravel dan Filament Admin Panel. Proyek ini memungkinkan pengelolaan data buku, anggota, dan transaksi peminjaman dengan tampilan dashboard yang responsif dan mudah digunakan.
 
-📌 Daftar Isi
-Dibangun Dengan
+---
 
-Fitur
+## 📌 Daftar Isi
 
-Flowchart Instalasi
+- [Dibangun Dengan](#-dibangun-dengan)  
+- [Fitur](#-fitur)  
+- [Flowchart Instalasi](#-flowchart-instalasi)  
+- [Langkah Instalasi](#-langkah-instalasi)  
+- [Konfigurasi Environment](#-konfigurasi-environment)  
+- [Migrasi & Seeder Database](#-migrasi--seeder-database)  
+- [Instalasi Filament](#-instalasi-filament)  
+- [Membuat User Admin](#-membuat-user-admin)  
+- [Menjalankan Aplikasi](#-menjalankan-aplikasi)  
+- [Kontribusi](#-kontribusi)  
+- [Lisensi](#-lisensi)  
+- [Kontak](#-kontak)  
 
-Langkah Instalasi
+---
 
-Konfigurasi Environment
+## 🔧 Dibangun Dengan
 
-Migrasi & Seeder Database
+- [Laravel](https://laravel.com/) – Framework PHP  
+- [Filament](https://filamentphp.com/) – Admin Panel Laravel  
+- MySQL / PostgreSQL – Basis Data  
+- Composer – Manajer Dependency PHP  
+- Node.js & NPM – Kompilasi Aset Frontend  
 
-Instalasi Filament
+---
 
-Membuat User Admin
+## ✨ Fitur
 
-Menjalankan Aplikasi
+- 📚 **Manajemen Buku**: Tambah, ubah, dan hapus data buku  
+- 👤 **Manajemen Anggota**: Kelola data anggota perpustakaan  
+- 🔁 **Transaksi Peminjaman**: Peminjaman dan pengembalian buku  
+- 🔐 **Autentikasi Admin**: Login aman dengan Filament  
+- 📱 **UI Responsif**: Tampilan dashboard yang mendukung perangkat mobile  
 
-Kontribusi
+---
 
-Lisensi
+## 📈 Flowchart Instalasi
 
-Kontak
-
-🔧 Dibangun Dengan
-Laravel – Framework PHP
-
-Filament – Admin Panel Laravel
-
-MySQL / PostgreSQL – Basis Data
-
-Composer – Manajer Dependency PHP
-
-Node.js & NPM – Kompilasi Aset Frontend
-
-✨ Fitur
-📚 Manajemen Buku: Tambah, ubah, dan hapus data buku
-
-👤 Manajemen Anggota: Kelola data anggota perpustakaan
-
-🔁 Transaksi Peminjaman: Peminjaman dan pengembalian buku
-
-🔐 Autentikasi Admin: Login aman dengan Filament
-
-📱 UI Responsif: Tampilan dashboard yang mendukung perangkat mobile
-
-📈 Flowchart Instalasi
-mermaid
-Salin
-Edit
+```mermaid
 flowchart LR
     A[Clone Repository] --> B[Install Dependency PHP]
     B --> C[Salin & Konfigurasi .env]
@@ -61,98 +53,110 @@ flowchart LR
     F --> G[Buat User Admin]
     G --> H[Jalankan Server]
     H --> I[Akses Dashboard /admin]
-🚀 Langkah Instalasi
-Clone repository
+```
 
-bash
-Salin
-Edit
-git clone https://github.com/adidarma24/ManagementPerpustakaan.git
-cd ManagementPerpustakaan
-Install dependency PHP
+---
 
-bash
-Salin
-Edit
-composer install
-Install dependency NodeJS (jika menggunakan aset frontend)
+## 🚀 Langkah Instalasi
 
-bash
-Salin
-Edit
-npm install
-npm run dev
-⚙️ Konfigurasi Environment
-Salin file .env
+1. **Clone repository**  
+   ```bash
+   git clone https://github.com/adidarma24/ManagementPerpustakaan.git
+   cd ManagementPerpustakaan
+   ```
+2. **Install dependency PHP**  
+   ```bash
+   composer install
+   ```
+3. **Install dependency NodeJS (jika menggunakan aset frontend)**  
+   ```bash
+   npm install
+   npm run dev
+   ```
 
-bash
-Salin
-Edit
-cp .env.example .env
-Edit file .env sesuai konfigurasi lokal kamu:
+---
 
-env
-Salin
-Edit
-APP_NAME=Perpustakaan
-APP_URL=http://localhost:8000
+## ⚙️ Konfigurasi Environment
 
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=perpustakaan
-DB_USERNAME=root
-DB_PASSWORD=
-Generate application key
+1. **Salin file `.env`**  
+   ```bash
+   cp .env.example .env
+   ```
+2. **Edit file `.env` sesuai konfigurasi lokal kamu:**  
+   ```env
+   APP_NAME=Perpustakaan
+   APP_URL=http://localhost:8000
 
-bash
-Salin
-Edit
-php artisan key:generate
-🧪 Migrasi & Seeder Database
-Jalankan migrasi database
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=perpustakaan
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
+3. **Generate application key**  
+   ```bash
+   php artisan key:generate
+   ```
 
-bash
-Salin
-Edit
-php artisan migrate
-(Opsional) Jika terdapat seeder:
+---
 
-bash
-Salin
-Edit
-php artisan db:seed
-🧩 Instalasi Filament
-Jika Filament belum terpasang, jalankan:
+## 🧪 Migrasi & Seeder Database
 
-bash
-Salin
-Edit
+1. **Jalankan migrasi database**  
+   ```bash
+   php artisan migrate
+   ```
+2. *(Opsional)* Jika terdapat seeder:  
+   ```bash
+   php artisan db:seed
+   ```
+
+---
+
+## 🧩 Instalasi Filament
+
+Jika Filament belum terpasang, jalankan:  
+```bash
 composer require filament/filament
 php artisan filament:install
-👤 Membuat User Admin
-bash
-Salin
-Edit
+```
+
+---
+
+## 👤 Membuat User Admin
+
+```bash
 php artisan make:filament-user
+```  
 Masukkan nama, email, dan password sesuai instruksi terminal.
 
-▶️ Menjalankan Aplikasi
-bash
-Salin
-Edit
-php artisan serve
-Akses aplikasi melalui browser:
+---
 
-bash
-Salin
-Edit
+## ▶️ Menjalankan Aplikasi
+
+```bash
+php artisan serve
+```  
+Akses aplikasi melalui browser:  
+```
 http://localhost:8000/admin
+```  
 Login menggunakan akun admin yang sudah dibuat.
 
-🤝 Kontribusi
-Kontribusi sangat terbuka!
+---
+
+## 🤝 Kontribusi
+
+Kontribusi sangat terbuka!  
 Silakan fork repositori ini, buat branch baru, dan kirimkan pull request.
 
-📄 Lisensi
-Proyek ini dilisensikan di bawah MIT License – lihat file LICENSE untuk detail.
+---
+
+## 📄 Lisensi
+
+Proyek ini dilisensikan di bawah MIT License – lihat file [LICENSE](LICENSE) untuk detail.
+
+---
+
+*Silakan gunakan proyek ini untuk pembelajaran atau pengembangan sistem perpustakaan internal. Jangan lupa beri bintang ⭐ jika kamu merasa ini bermanfaat!*
