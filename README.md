@@ -16,8 +16,7 @@ Sistem Manajemen Perpustakaan berbasis Laravel dan Filament Admin Panel. Proyek 
 - [Membuat User Admin](#-membuat-user-admin)  
 - [Menjalankan Aplikasi](#-menjalankan-aplikasi)  
 - [Kontribusi](#-kontribusi)  
-- [Lisensi](#-lisensi)  
-- [Kontak](#-kontak)  
+- [Lisensi](#-lisensi)   
 
 ---
 
