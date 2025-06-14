@@ -33,7 +33,7 @@ class PublisherResource extends Resource
                 Forms\Components\FileUpload::make('logo')
                     ->label('Logo')
                     ->image()
-                    ->directory('logos')
+                    ->directory('logos') // Menyimpan file di storage/logos
                     ->nullable(),
             ]);
     }
@@ -53,7 +53,8 @@ class PublisherResource extends Resource
                     ->label('Description')
                     ->limit(50),
                 Tables\Columns\ImageColumn::make('logo')
-                    ->label('Logo'),
+                    ->label('Logo')
+                    ->disk('public'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Created At')
                     ->dateTime()

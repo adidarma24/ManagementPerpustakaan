@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('authors', function (Blueprint $table) {
-            $table->bigIncrements('id'); // Menggunakan bigIncrements untuk id
-            $table->string('name'); // Menambahkan kolom name
+        Schema::create('peminjaman_book', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('peminjaman_id')->constrained('peminjamen')->onDelete('cascade');
+            $table->foreignId('book_id')->constrained('books')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('authors');
+        Schema::dropIfExists('peminjaman_book');
     }
 };

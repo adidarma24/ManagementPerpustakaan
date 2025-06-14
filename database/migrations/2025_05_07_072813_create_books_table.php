@@ -19,9 +19,7 @@ return new class extends Migration
             $table->integer('stock'); // Kolom untuk jumlah stok buku
             $table->string('cover')->nullable(); // Kolom untuk cover buku (opsional)
             $table->unsignedBigInteger('publisher_id'); // Kolom publisher_id sebagai unsignedBigInteger
-            $table->string('category'); // Kolom untuk kategori buku
             $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps(); // Kolom created_at dan updated_at
         });
     }

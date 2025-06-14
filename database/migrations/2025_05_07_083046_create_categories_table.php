@@ -12,10 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('name'); // Menambahkan kolom name
-            $table->text('description')->nullable(); // Menambahkan kolom description (opsional)
-            $table->timestamps();
+            if (!Schema::hasTable('categories')) {
+                $table->bigIncrements('id'); // Menggunakan bigIncrements untuk id
+                $table->string('name'); // Menambahkan kolom name
+                $table->text('description')->nullable(); // Menambahkan kolom description (opsional)
+                $table->timestamps();
+            }
         });
     }
 

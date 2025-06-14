@@ -9,6 +9,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Cache;
 
 class BookResource extends Resource
 {
@@ -75,8 +76,7 @@ class BookResource extends Resource
                     ->label('Stock')
                     ->sortable(),
                 Tables\Columns\ImageColumn::make('cover')
-                    ->label('Cover') // Menampilkan cover sebagai gambar
-                    ->circular(), // Menambahkan opsi untuk membuat gambar berbentuk lingkaran
+                    ->label('Cover'), // Menampilkan cover sebagai gambar
                 Tables\Columns\TextColumn::make('publisher.name')
                     ->label('Publisher')
                     ->sortable(),
@@ -100,7 +100,8 @@ class BookResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->query(Book::query());
     }
 
     public static function getRelations(): array

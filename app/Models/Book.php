@@ -18,7 +18,7 @@ class Book extends Model
         'stock',
         'cover',
         'publisher_id',
-        'category',
+        'category_id',
     ];
 
     public function publisher()
@@ -30,8 +30,9 @@ class Book extends Model
     {
         return $this->belongsTo(Category::class);
     }
-    public function author()
+
+    public function peminjamans()
     {
-        return $this->belongsToMany(Author::class);
+        return $this->belongsToMany(Peminjaman::class, 'peminjaman_book');
     }
 }

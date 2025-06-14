@@ -25,14 +25,14 @@ class Peminjaman extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class);
     }
 
     /**
      * Relasi ke model Book.
      */
-    public function book()
+    public function books()
     {
-        return $this->belongsTo(Book::class);
+        return $this->belongsToMany(Book::class, 'peminjaman_book');
     }
 }

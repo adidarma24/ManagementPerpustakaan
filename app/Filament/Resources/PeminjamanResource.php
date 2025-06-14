@@ -12,6 +12,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\Select;
+use Illuminate\Support\Facades\DB;
 
 class PeminjamanResource extends Resource
 {
@@ -26,14 +28,18 @@ class PeminjamanResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('user_id')
+                Select::make('user_id')
                     ->label('Member')
                     ->relationship('user', 'name')
                     ->required(),
-                Forms\Components\Select::make('book_id')
-                    ->label('Book')
-                    ->relationship('book', 'title')
-                    ->required(),
+                Select::make('books')
+                    ->label('Books')
+                    ->multiple()
+                    ->relationship('books', 'title') // Corrected relationship name to match the model
+                    ->required()
+                    ->saveRelationshipsUsing(function ($record, $state) {
+                        $record->books()->sync($state); // Sync books with the pivot table
+                    }),
                 Forms\Components\DatePicker::make('borrow_date')
                     ->label('Borrow Date')
                     ->required(),
@@ -67,8 +73,8 @@ class PeminjamanResource extends Resource
                     ->label('Member')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('book.title')
-                    ->label('Book')
+                Tables\Columns\TextColumn::make('books.title')
+                    ->label('Books')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('borrow_date')

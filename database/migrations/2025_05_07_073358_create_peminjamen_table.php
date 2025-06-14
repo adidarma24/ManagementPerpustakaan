@@ -13,13 +13,17 @@ return new class extends Migration
     {
         Schema::create('peminjamen', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // Relasi ke tabel users
-            $table->foreignId('book_id')->constrained('books')->onDelete('cascade'); // Relasi ke tabel books
-            $table->date('borrow_date'); // Tanggal peminjaman
-            $table->date('return_date')->nullable(); // Tanggal pengembalian (opsional)
-            $table->date('due_date'); // Tanggal jatuh tempo
-            $table->enum('status', ['returned', 'borrowed', 'booked', 'canceled'])->default('borrowed'); // Status peminjaman
+            $table->unsignedBigInteger('user_id'); // Kolom user_id
+            $table->unsignedBigInteger('book_id')->default(1)->change();
+            $table->date('borrow_date'); // Kolom borrow_date
+            $table->date('return_date')->nullable(); // Kolom return_date
+            $table->date('due_date'); // Kolom due_date
+            $table->enum('status', ['returned', 'borrowed', 'booked', 'canceled'])->default('borrowed'); // Kolom status
             $table->timestamps();
+
+            // Foreign key constraints
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
         });
     }
 
@@ -29,5 +33,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('peminjamen');
+        
     }
 };
