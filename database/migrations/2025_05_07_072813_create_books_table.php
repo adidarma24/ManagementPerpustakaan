@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('isbn')->unique(); // Kolom untuk ISBN dengan constraint unik
             $table->integer('stock'); // Kolom untuk jumlah stok buku
             $table->string('cover')->nullable(); // Kolom untuk cover buku (opsional)
+            $table->text('description')->nullable(); // Kolom untuk deskripsi buku (opsional)
             $table->unsignedBigInteger('publisher_id'); // Kolom publisher_id sebagai unsignedBigInteger
             $table->unsignedBigInteger('category_id');
             $table->timestamps(); // Kolom created_at dan updated_at

@@ -42,7 +42,7 @@ class BookResource extends Resource
                 Forms\Components\FileUpload::make('cover')
                     ->label('Cover')
                     ->image()
-                    ->directory('covers')
+                    ->directory('covers') // Aktifkan penyimpanan ke folder covers
                     ->nullable(),
                 Forms\Components\Select::make('publisher_id')
                     ->label('Publisher')
@@ -51,6 +51,10 @@ class BookResource extends Resource
                 Forms\Components\Select::make('category_id')
                     ->label('Category')
                     ->relationship('category', 'name')
+                    ->required(),
+                Forms\Components\Select::make('author_id')
+                    ->label('Author')
+                    ->relationship('author', 'name')
                     ->required(),
             ]);
     }
@@ -84,6 +88,10 @@ class BookResource extends Resource
                     ->label('Category')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('author.name')
+                    ->label('Author')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Created At')
                     ->dateTime()
@@ -93,8 +101,11 @@ class BookResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ActionGroup::make([
+                Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make(), 
                 Tables\Actions\DeleteAction::make(),
+                ])
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

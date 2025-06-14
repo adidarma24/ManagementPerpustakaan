@@ -10,6 +10,8 @@ use Filament\Tables\Columns\TextColumn;
 
 class LatestOrders extends BaseWidget
 {
+    protected int | string | array $columnSpan = 'full';
+    
     public function table(Table $table): Table
     {
         return $table

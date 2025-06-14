@@ -21,7 +21,6 @@ class AuthorResource extends Resource
     protected static ?string $label = 'Author';
     protected static ?string $pluralLabel = 'Authors';
     protected static ?string $navigationGroup = 'Library Management';
-
     public static function form(Form $form): Form
     {
         return $form
@@ -58,8 +57,11 @@ class AuthorResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\ViewAction::make(),
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\DeleteAction::make(),
+                ])
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -35,4 +35,9 @@ class Book extends Model
     {
         return $this->belongsToMany(Peminjaman::class, 'peminjaman_book');
     }
+
+    public function author()
+    {
+        return $this->belongsTo(Author::class);
+    }
 }
